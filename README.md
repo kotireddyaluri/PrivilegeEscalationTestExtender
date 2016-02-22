@@ -23,6 +23,8 @@ What are the ways to identify the privilege escalations:
 
 Similarly we can add multiple conditions to identify the Privileges Escalation Requests.
 
-Also this Extender identifies 
-         Direct Page Access vulnerability by setting the cookie with null
-         Authorization Bypass in some cases
+Also this Extender identifies
+
+Direct Page Access vulnerability by setting the cookie with null
+
+Authorization Bypass in some cases
