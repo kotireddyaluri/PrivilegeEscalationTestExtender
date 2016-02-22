@@ -5,6 +5,7 @@ How this tool works   (works only with pro version)
 If an administrator role User's URL can be accessible by a Normal role user then it is privilege escalated
 
 What are the ways to identify the privilege escalations: 
+
 1. based on response text
          if contains "ABC" text then the URL is Privilege Escalated
          if contains "PQR" text then the URL is NOT Privilege Escalated
