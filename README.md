@@ -19,7 +19,7 @@ What are the ways to identify the privilege escalations:
 3. based on Response Status Codes
 
          a. if baseResponse Status Code is not Equals to CurrentResponse Status Code then it is NOT Privilege Escalated
-         [base Request/Response means Administrator Role user session request/response current Request/Response means Normal Role user            session request/response]
+         [base Request/Response means Administrator Role user session request/response current Request/Response means Normal Role user session request/response]
 
 Similarly we can add multiple conditions to identify the Privileges Escalation Requests.
 
