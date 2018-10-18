@@ -28,3 +28,9 @@ Also this Extender identifies
 Direct Page Access vulnerability by setting the cookie with null
 
 Authorization Bypass in some cases
+
+Adding cookie,csrf,condition
+<img src='https://github.com/kotireddyaluri/PrivilegeEscalationTestExtender/blob/master/UI_Tab.jpg'>
+
+Run Active Scan
+<img src='https://github.com/kotireddyaluri/PrivilegeEscalationTestExtender/blob/master/Scanner.jpg'>
