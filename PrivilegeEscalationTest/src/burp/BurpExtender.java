@@ -72,8 +72,8 @@ public class BurpExtender implements IBurpExtender, IScannerCheck, ITab
 		// obtain an extension helpers object
 		helpers = callbacks.getHelpers();
 
-		// set our extension name
-		callbacks.setExtensionName("Privilege Escalation Test");
+		// set our extension name //Privilege Escalation Tests
+		callbacks.setExtensionName("PrivsEscs");
 
 		// register ourselves as a custom scanner check
 		callbacks.registerScannerCheck(this);
@@ -671,6 +671,7 @@ public class BurpExtender implements IBurpExtender, IScannerCheck, ITab
 		request=new String(baseRequestResponse.getRequest());
 		String reqBody=request.substring(rinfo.getBodyOffset());
 		//update HEADERS in the Request
+		//new headers will be added and existing headers will be updated
 		Set<String> reqHeadKeys=req_Headers.keySet();
 		for(int i=0;i< headers.size();i++)
 	   	{
@@ -678,10 +679,16 @@ public class BurpExtender implements IBurpExtender, IScannerCheck, ITab
 			{
 				if(headers.get(i).startsWith(key))
 				{
-					headers.set(i, key+": "+req_Headers.get(key));
+					headers.remove(i);
 				}
 			}
 		}
+		for(String key:reqHeadKeys)
+		{
+			headers.add(key+": "+req_Headers.get(key));
+		}
+		
+		
 		//Request with updated Headers
 		byte[] completeReq=helpers.buildHttpMessage(headers, reqBody.getBytes());		
 		//update POST body parameters in the Request
