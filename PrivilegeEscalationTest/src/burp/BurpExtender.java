@@ -670,8 +670,10 @@ public class BurpExtender implements IBurpExtender, IScannerCheck, ITab
 		baseResStatusCode=respInfo.getStatusCode();
 		request=new String(baseRequestResponse.getRequest());
 		String reqBody=request.substring(rinfo.getBodyOffset());
-		//update HEADERS in the Request
-		//new headers will be added and existing headers will be updated
+		
+		ArrayList<String> rl=new ArrayList<String>(); //to add only new headers
+						
+		//update the existing headers
 		Set<String> reqHeadKeys=req_Headers.keySet();
 		for(int i=0;i< headers.size();i++)
 	   	{
@@ -679,14 +681,29 @@ public class BurpExtender implements IBurpExtender, IScannerCheck, ITab
 			{
 				if(headers.get(i).startsWith(key))
 				{
-					headers.remove(i);
+					headers.set(i, key+": "+req_Headers.get(key));
+					rl.add(key);
 				}
 			}
 		}
+		
+		//adding new headers	
 		for(String key:reqHeadKeys)
 		{
-			headers.add(key+": "+req_Headers.get(key));
+			boolean found=false;
+			for(int i=0;i<rl.size();i++)
+			{
+				if(key.equalsIgnoreCase(rl.get(i)))
+				{
+					found=true;
+				}
+			}
+			if(!found)
+			{
+				headers.add(key+": "+req_Headers.get(key));
+			}
 		}
+		
 		
 		
 		//Request with updated Headers
