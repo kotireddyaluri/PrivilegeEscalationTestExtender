@@ -671,6 +671,12 @@ public class BurpExtender implements IBurpExtender, IScannerCheck, ITab
 		request=new String(baseRequestResponse.getRequest());
 		String reqBody=request.substring(rinfo.getBodyOffset());
 		
+		String method=rinfo.getMethod();
+		if(method.equalsIgnoreCase("OPTIONS"))
+		{
+			return null;
+		}
+		
 		ArrayList<String> rl=new ArrayList<String>(); //to add only new headers
 						
 		//update the existing headers
